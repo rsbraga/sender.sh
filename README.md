@@ -7,6 +7,7 @@ Pra usar:
 - autorize executar o ShellBot.sh ( $ chmod +x .shellbot/ShellBot.sh );
 - autorize executar o sender.sh ( $ chmod +x ./sender.sh );
 - altere a variável $BOT para pasta do seu ambiente;
+- insira o Token do seu Bot na função "ShellBot.init -t <TOKEN-TELEGRAM> --return map"
 - execute ./sender.sh
 
 O script deve criar as pastas que precisar.
