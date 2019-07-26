@@ -15,7 +15,7 @@ O script deve criar as pastas que precisar.
 
 Para envio de mensagens basta criar arquivos de texto na pasta ./msg.
 Sugiro utilizar o formato "[ID]-[NOME].msg" para o nome do arquivo.
-  Ex. ~/bot/msg/21025096-alerta.msg
+  Ex. ~/bot/msg/20000006-alerta.msg
   
 ## Exemplo para criar mensagens
 `$ echo "Envie conteúdo de texto podendo usar as seguintes opções de formatação: *Negrito*,_Italico_,'Monospace'.
