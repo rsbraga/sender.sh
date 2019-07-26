@@ -23,7 +23,7 @@ LOG="-200xxxxxxxxxx"
 source $BOT/shellbot/ShellBot.sh 
 
 
-# Inicializando o bot DioguinhoBot
+# Inicializando o bot
 ShellBot.init -t <TOKEN-TELEGRAM> --return map
 
 
