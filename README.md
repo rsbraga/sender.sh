@@ -11,8 +11,8 @@ Pra usar:
 
 O script deve criar as pastas que precisar.
 
-Para envio de mensagens basta criar arquivos de texto na pasta ./msg
-Sugiro utilizar o formato "[ID]-[NOME].msg" para o nome do arquivo
+Para envio de mensagens basta criar arquivos de texto na pasta ./msg.
+Sugiro utilizar o formato "[ID]-[NOME].msg" para o nome do arquivo.
   Ex. ~/bot/msg/21025096-alerta.msg
   
   
