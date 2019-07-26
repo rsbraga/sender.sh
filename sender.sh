@@ -1,0 +1,95 @@
+#!/bin/bash
+
+# envia pelo Telegram mensagens depositadas na pasta ./msg
+# utilize o formato "<ID>-<NOME>.msg" para o nome do arquivo
+# Ex. ~/bot/msg/21025096-alerta.msg
+
+
+# ambiente
+BOT='/home/ti/bot'
+MSGS="$BOT/msg"
+TMP="$BOT/tmp"
+
+cd $LOCAL
+
+# ID de chats (canal/grupo) do Telegram 
+CANAL="-100xxxxxxxxxx"
+LOG="-200xxxxxxxxxx"
+
+
+
+# API para envio pelo Telegram
+source $LOCAL/shellbot/ShellBot.sh 
+
+
+# Inicializando o bot DioguinhoBot
+ShellBot.init -t <TOKEN-TELEGRAM> --return map
+
+
+# para envio de mensagem no telegram usando ShellBot
+send() {
+
+	ShellBot.sendMessage \
+	--chat_id $destino \
+	--text "$msg" \
+	--disable_notification true \
+	--parse_mode markdown
+
+	unset msg
+}
+
+
+# para editar uma mensagem no telegram
+# utilize 'echo ${return[ok]} > $TMP/senderEdit.id' para marcar sua mensagem
+edit() {
+	msgtmp=$( cat $TMP/senderEdit.id )
+
+	# edita a mensagem com as opções se houver
+	ShellBot.editMessageText \
+	--chat_id $destino \
+	--message_id $msgtmp \
+	--text " $msg " \
+	--parse_mode markdown
+	
+	unset msg msgtmp
+}
+
+
+
+
+# loop
+while : ; do
+
+	# seleciona o arquivo mais antigo da pasta de mensagens
+	msgfile=$( ls -1t $MSGS | tail -n 1 )
+
+	# se houver conteúdo
+	[[ -n $msgfile ]] && {
+
+		# define o destino da mensagem
+		case ${msgfile%%-*} in
+
+			'vol') destino=$VOL ;;
+			'status') destino=$CANAL ;;
+
+			# se o inicio do nome do arquivo for numérico
+			# usa este número como ID de destino
+			*) [[ $(echo "${msgfile%%-*}" | egrep [0-9]) ]] && { destino=${msgfile%%-*} ; } || { mv $MSGS/$msgfile $MSGS/.error/$msgfile ; } ;;
+		esac
+
+
+		# importa a mensagem do arquivo
+		msg=$(cat $MSGS/$msgfile | sed 's/&/e/g')
+
+		# ver no terminal
+		echo ; echo "$MSGS/$msgfile" - $(date +%H:%M:%S)
+		echo -e "$msg"
+
+		send # enviar
+
+		# remover mensagem da fila
+		[[ ${return[ok]} == 'true' ]] && { rm $MSGS/$msgfile ; } || { mv $MSGS/$msgfile $MSGS/.error/$msgfile ; }
+
+	}
+
+done
