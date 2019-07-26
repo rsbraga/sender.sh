@@ -7,8 +7,8 @@ Envio simples de mensagens para Telegram, através de arquivos de texto gravados
 - autorize executar o ShellBot.sh ( $ chmod +x ./shellbot/ShellBot.sh );
 - autorize executar o sender.sh ( $ chmod +x ./sender.sh );
 - edit o arquivo ./sender.sh;
-- altere a variável $BOT para pasta do seu ambiente;
-- insira o Token do seu Bot na função "ShellBot.init -t [TOKEN-TELEGRAM] --return map";
+-- altere a variável $BOT para pasta do seu ambiente no arquivo;
+-- insira o Token do seu Bot em "ShellBot.init -t [TOKEN-TELEGRAM] --return map" no arquivo;
 - execute ./sender.sh
 
 O script deve criar as pastas que precisar.
