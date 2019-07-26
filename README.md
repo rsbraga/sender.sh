@@ -2,9 +2,9 @@
 
 Envio simples de mensagens para Telegram, através de arquivos de texto gravados na pasta ./msg
 
-Pra usar:
+## Configurar:
 - descompacte o arquivo shellbot.zip;
-- autorize executar o ShellBot.sh ( $ chmod +x .shellbot/ShellBot.sh );
+- autorize executar o ShellBot.sh ( $ chmod +x ./shellbot/ShellBot.sh );
 - autorize executar o sender.sh ( $ chmod +x ./sender.sh );
 - edit o arquivo ./sender.sh;
 - altere a variável $BOT para pasta do seu ambiente;
@@ -17,7 +17,7 @@ Para envio de mensagens basta criar arquivos de texto na pasta ./msg.
 Sugiro utilizar o formato "[ID]-[NOME].msg" para o nome do arquivo.
   Ex. ~/bot/msg/21025096-alerta.msg
   
- ## Ex. para criar mensagens
+## Exemplo para criar mensagens
 `$ echo "Envie conteúdo de texto podendo usar as seguintes opções de formatação: *Negrito*,_Italico_,'Monospace'.
 \n também é aceito para quebra de linhas" > $MSGS/2x0x5xx6-teste.msg`
 
