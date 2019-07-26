@@ -7,10 +7,11 @@
 
 # ambiente
 BOT='/home/ti/bot'
+[[ ! -e $BOT/msg ]] && { mkdir $BOT/msg ; }
+[[ ! -e $BOT/msg/.error/ ]] && { mkdir $BOT/msg/.error ; }
 MSGS="$BOT/msg"
-TMP="$BOT/tmp"
 
-cd $LOCAL
+cd $BOT
 
 # ID de chats (canal/grupo) do Telegram 
 CANAL="-100xxxxxxxxxx"
@@ -19,7 +20,7 @@ LOG="-200xxxxxxxxxx"
 
 
 # API para envio pelo Telegram
-source $LOCAL/shellbot/ShellBot.sh 
+source $BOT/shellbot/ShellBot.sh 
 
 
 # Inicializando o bot DioguinhoBot
@@ -40,9 +41,9 @@ send() {
 
 
 # para editar uma mensagem no telegram
-# utilize 'echo ${return[ok]} > $TMP/senderEdit.id' para marcar sua mensagem
+# utilize 'echo ${return[ok]} > $BOT/senderEdit.id' para marcar sua mensagem
 edit() {
-	msgtmp=$( cat $TMP/senderEdit.id )
+	msgtmp=$( cat $BOT/senderEdit.id )
 
 	# edita a mensagem com as opções se houver
 	ShellBot.editMessageText \
@@ -85,7 +86,7 @@ while : ; do
 		echo ; echo "$MSGS/$msgfile" - $(date +%H:%M:%S)
 		echo -e "$msg"
 
-		send # enviar
+		( send ) # enviar
 
 		# remover mensagem da fila
 		[[ ${return[ok]} == 'true' ]] && { rm $MSGS/$msgfile ; } || { mv $MSGS/$msgfile $MSGS/.error/$msgfile ; }
