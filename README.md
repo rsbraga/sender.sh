@@ -18,11 +18,13 @@ Sugiro utilizar o formato "[ID]-[NOME].msg" para o nome do arquivo.
  ## Ex. para criar mensagens
 $ echo "Envie conteúdo de texto podendo usar as seguintes opções de formatação:\*Negrito\*,\_Italico\_,\`Monospace\`.
 \n também é aceito para quebra de linhas" > $MSGS/2x0x5xx6-teste.msg 
-  
-  
-É possível editar mensagens se você souber a ID desta e grava-la no
-arquivo $BOT/senderEdit.id. Este recurso ainda não está completo.
 
+_É possível editar mensagens se você souber a ID desta e grava-la no
+arquivo $BOT/senderEdit.id. Este recurso ainda não está completo._
+
+
+
+## Erros
 Em caso de erro no envio o arquivo será movido para a pasta $BOT/$MSGS/.error
 
 
