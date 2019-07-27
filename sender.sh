@@ -93,7 +93,7 @@ while : ; do
 			[[ ! -e ${bkp_dia} ]] && { mkdir ${bkp_dia} ; }
 
 			# mover mensagem da fila para pasta de bkp do dia
-			[[ ${return[ok]} == 'true' ]] && { mv $MSGS/$msgfile ${bkp_dia}/${msgfile} ; echo "backup salvo em: ${bkp_dia}" ; } || { mv $MSGS/$msgfile $MSGS/.error/$msgfile ; }
+			[[ ${return[ok]} == 'true' ]] && { mv $MSGS/$msgfile ${bkp_dia}/${msgfile} ; echo "[LOG] backup salvo em: ${bkp_dia}" ; } || { mv $MSGS/$msgfile $MSGS/.error/$msgfile ; }
 		)
 	}
 
