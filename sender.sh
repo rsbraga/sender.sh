@@ -36,8 +36,6 @@ send() {
 	--disable_notification true \
 	--parse_mode markdown
 	
-	r=$?
-	
 	unset msg
 }
 
