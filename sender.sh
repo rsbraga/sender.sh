@@ -88,11 +88,11 @@ while : ; do
 		echo ; echo "$MSGS/$msgfile" - $(date +%H:%M:%S)
 		echo -e "$msg"
 
-		( send ) # enviar
+		( send # enviar
 
 		# remover mensagem da fila
 		[[ ${return[ok]} == 'true' ]] && { rm $MSGS/$msgfile ; } || { mv $MSGS/$msgfile $MSGS/.error/$msgfile ; }
-
+		)
 	}
 
 done
