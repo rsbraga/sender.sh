@@ -87,9 +87,13 @@ while : ; do
 		echo -e "$msg"
 
 		( send # enviar
+		
+			# fazer bkp da pasta do dia
+			bkp_dia="${MSGS}/.bkp_$(date +%d-%m-%Y)"
+			[[ ! -e ${bkp_dia} ]] && { mkdir ${bkp_dia} ; }
 
-		# remover mensagem da fila
-		[[ ${return[ok]} == 'true' ]] && { rm $MSGS/$msgfile ; } || { mv $MSGS/$msgfile $MSGS/.error/$msgfile ; }
+			# mover mensagem da fila para pasta de bkp do dia
+			[[ ${return[ok]} == 'true' ]] && { mv $MSGS/$msgfile ${bkp_dia}/${msgfile} ; echo "[LOG] backup salvo em: ${bkp_dia}" ; } || { mv $MSGS/$msgfile $MSGS/.error/$msgfile ; }
 		)
 	}
 
